@@ -64,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToppingsCell" textLabel="RwA-ap-8tq" detailTextLabel="vKs-0p-3qp" style="IBUITableViewCellStyleSubtitle" id="CGL-hB-VLS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToppingCell" textLabel="RwA-ap-8tq" detailTextLabel="vKs-0p-3qp" style="IBUITableViewCellStyleSubtitle" id="CGL-hB-VLS">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CGL-hB-VLS" id="BWH-VP-sfa">
@@ -107,8 +107,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="candy" translatesAutoresizingMaskIntoConstraints="NO" id="Yud-zX-L7O">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cake" translatesAutoresizingMaskIntoConstraints="NO" id="Yud-zX-L7O">
                                 <rect key="frame" x="107" y="79" width="200" height="200"/>
+                                <color key="tintColor" red="1" green="0.66674288790000003" blue="0.177181426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="5at-iv-427"/>
                                     <constraint firstAttribute="width" constant="200" id="f5k-hC-ngz"/>
@@ -186,6 +187,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="candy" width="149" height="300"/>
+        <image name="cake" width="1200" height="1200"/>
     </resources>
 </document>

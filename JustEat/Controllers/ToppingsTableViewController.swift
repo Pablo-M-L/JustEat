@@ -10,37 +10,79 @@ import UIKit
 
 class ToppingsTableViewController: UITableViewController {
 
+    //recibe el producto seleccionado en el cupcakeTableViewController.
+    var cupcake: Product!
+    //declara un conjunto.
+    var selectedToppings = Set<Product>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Añadir decoracion"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Pedir ahora", style: .plain, target: self, action: #selector(placeOrder))
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return ProductsFactory.shared().toppings.count
+    }
+    
+    
+    @objc func placeOrder(){
+        guard let orderViewController = storyboard?.instantiateViewController(withIdentifier: "OrderVC") as? OrderViewController else{
+            fatalError("no se ha podido cargar el view cntroller requerido desde el storyboard")
+        }
+        //pasamos el cupcake seleccionado y el o los toppings.
+        orderViewController.cupcake = cupcake
+        orderViewController.toppings = selectedToppings
+        
+        navigationController?.pushViewController(orderViewController, animated: true)
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ToppingCell", for: indexPath)
+
+        let topping = ProductsFactory.shared().toppings[indexPath.row]
+        cell.textLabel?.text = "\(topping.name) - \(topping.price)€ "
+        cell.detailTextLabel?.text = topping.description
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //comprobamos si la celda existe.
+        guard let cell = tableView.cellForRow(at: indexPath) else{
+            fatalError("no hemos podido localizar la celda pulsada....")
+        }
+        
+        let topping = ProductsFactory.shared().toppings[indexPath.row]
+        
+        //si el conjunto selectedtoppings ya contiene el topping pulsado, lo desmarca y lo quita del conjunto.
+        //si el conjunto selectedtoppings no tiene el topping pulsado, lo marca y lo añade al conjunto.
+        if selectedToppings.contains(topping){
+            cell.accessoryType = .none
+            selectedToppings.remove(topping)
+        }else{
+            cell.accessoryType = .checkmark
+            selectedToppings.insert(topping)
+        }
+        
+        //no deja el item pulsado en gris.
+        tableView.deselectRow(at: indexPath, animated: true)
+
+    }
 
     /*
     // Override to support conditional editing of the table view.

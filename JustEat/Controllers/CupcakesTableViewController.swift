@@ -9,9 +9,13 @@
 import UIKit
 
 class CupcakesTableViewController: UITableViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Cupcakes Just Eat"
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,23 +28,39 @@ class CupcakesTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return ProductsFactory.shared().cupcakes.count
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CupcakeCell", for: indexPath)
+
+        let cupcake = ProductsFactory.shared().cupcakes[indexPath.row]
+        cell.textLabel?.text = "\(cupcake.name) - \(cupcake.price)€"
+        cell.detailTextLabel?.text = cupcake.description
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //instancia el viewcontroller al que se quiere ir y pasar los datos.
+        guard let toppingsVC = storyboard?.instantiateViewController(withIdentifier: "ToppingsVC") as? ToppingsTableViewController else{
+            fatalError("no hemso podido instanciar el toppings view controller desde el storyboard")
+        }
+        
+        //llama a la variable cupcake que hay en el ToppingsTableViewController y le pasa el producto seleccionado.
+        toppingsVC.cupcake = ProductsFactory.shared().cupcakes[indexPath.row]
+        
+        //pide al navigation controller que valla al controller que queremos.
+        navigationController?.pushViewController(toppingsVC, animated: true)
+        
+    }
+
 
     /*
     // Override to support conditional editing of the table view.
