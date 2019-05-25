@@ -19,6 +19,7 @@
 		846ED176229714C300B61897 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846ED175229714C300B61897 /* Product.swift */; };
 		846ED178229715DE00B61897 /* ProductsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846ED177229715DE00B61897 /* ProductsFactory.swift */; };
 		846ED17A2297E66800B61897 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846ED1792297E66800B61897 /* Order.swift */; };
+		846ED17C229908CD00B61897 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 846ED17B229908CD00B61897 /* Intents.intentdefinition */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		846ED175229714C300B61897 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		846ED177229715DE00B61897 /* ProductsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsFactory.swift; sourceTree = "<group>"; };
 		846ED1792297E66800B61897 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		846ED17B229908CD00B61897 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Intents.intentdefinition; path = "Supporting Files/Intents.intentdefinition"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				846ED15D22970B5200B61897 /* Assets.xcassets */,
 				846ED15F22970B5200B61897 /* LaunchScreen.storyboard */,
 				846ED16222970B5200B61897 /* Info.plist */,
+				846ED17B229908CD00B61897 /* Intents.intentdefinition */,
 			);
 			path = JustEat;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				846ED15722970B4E00B61897 /* AppDelegate.swift in Sources */,
 				846ED178229715DE00B61897 /* ProductsFactory.swift in Sources */,
 				846ED17322970F3900B61897 /* OrderViewController.swift in Sources */,
+				846ED17C229908CD00B61897 /* Intents.intentdefinition in Sources */,
 				846ED17A2297E66800B61897 /* Order.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

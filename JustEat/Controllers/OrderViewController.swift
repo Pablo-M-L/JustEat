@@ -68,34 +68,6 @@ class OrderViewController: UIViewController {
     
     //crea la actividad para siri.
     func donate (_ order: Order){
-        let activity = NSUserActivity(activityType: "com.pablo.JustEat.order")
-    
-        let orderName = order.name
-        //definimos si el pedido es en femenino (una...) o en masculino (un....) dependiendo del cupcake.
-        if order.cupcake.name.last == "a"{
-            activity.title = "Pedir una \(orderName)"
-        }
-        else{
-            activity.title = "Pedir un \(orderName)"
-        }
-        
-        //se hace visible para el proceso de busqueda en el spotlight y en prediccion de siri.
-        activity.isEligibleForSearch = true
-        activity.isEligibleForPrediction = true
-        
-        //las estructuras no se pueden pasar directamente a la userInfo, porque esta en codigo object C.
-        //hay que codificar la estructura (struct) en objetos data.
-        let encoder = JSONEncoder()
-        if let orderData = try? encoder.encode(order){
-            activity.userInfo = ["order": orderData]
-        }
-        
-        //dar a la actividad un identificador unico para cada pedido.
-        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(orderName)
-        
-        //frase para invocar con siri y que haga el pedido.
-        activity.suggestedInvocationPhrase = "Quiero un postre!"
-        self.userActivity = activity
         
         
     }
