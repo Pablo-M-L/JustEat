@@ -41,6 +41,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    //metodo recibe la ejecucion de un pedido llamado por el siri shortcut
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if userActivity.activityType == "com.pablo.JustEat.order"{
+            guard let navController = window?.rootViewController as? UINavigationController else{
+                fatalError("se suponia que la app debia arrancar con un navigation controller")
+            }
+            
+            guard let orderVC = navController.storyboard?.instantiateViewController(withIdentifier: "OrderVC") as? OrderViewController else{
+                fatalError("no podemos cargar el view controller para hacer el pedido.")
+            }
+            
+            if let order = Order(from: userActivity.userInfo?["order"] as? Data){
+                orderVC.cupcake = order.cupcake
+                orderVC.toppings = order.toppings
+                
+                navController.pushViewController(orderVC, animated: true)
+            }
+            
+        }
+        return true
+    }
 
 }
 

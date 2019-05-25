@@ -41,6 +41,22 @@ struct Order: Codable, Hashable{
         //resultado anterior ($0) mas el resultado actual ($1.price).
         return toppings.reduce(cupcake.price){ $0 + $1.price}
     }
-    
+}
 
+
+//cuando es llamado desde el shortcut de siri.
+extension Order {
+    //el init es opcional porque puede que devuelva nulo, por aceptamos un pedido nulo.
+    init?(from data: Data?){
+        guard let data = data else{return nil}
+        
+        let decoder = JSONDecoder()
+        guard let savedOrder = try? decoder.decode(Order.self, from: data) else{
+            return nil
+        }
+        
+        //configuramos la orden, con los datos recibidos del shortcut de siri.
+        cupcake = savedOrder.cupcake
+        toppings = savedOrder.toppings
+    }
 }
